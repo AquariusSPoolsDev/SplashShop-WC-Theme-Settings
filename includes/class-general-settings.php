@@ -175,6 +175,33 @@ class ShopChop_General_Settings {
 	}
 
 	/**
+	 * Build a " (L × W × H unit)" suffix from a pool profile's saved dimensions.
+	 * Returns an empty string when any dimension is missing (calculator is optional).
+	 *
+	 * @param int $profile_id Pool profile post ID.
+	 * @return string
+	 */
+	private function format_pool_dimensions( $profile_id ) {
+		$l = get_post_meta( $profile_id, '_pool_size_l', true );
+		$w = get_post_meta( $profile_id, '_pool_size_w', true );
+		$h = get_post_meta( $profile_id, '_pool_size_h', true );
+
+		if ( '' === $l || '' === $w || '' === $h ) {
+			return '';
+		}
+
+		$unit = get_post_meta( $profile_id, '_pool_size_unit', true ) === 'ft' ? 'ft' : 'm';
+
+		return sprintf(
+			' (%s × %s × %s %s)',
+			rtrim( rtrim( number_format( (float) $l, 2 ), '0' ), '.' ),
+			rtrim( rtrim( number_format( (float) $w, 2 ), '0' ), '.' ),
+			rtrim( rtrim( number_format( (float) $h, 2 ), '0' ), '.' ),
+			$unit
+		);
+	}
+
+	/**
 	 * Render a read-only table of every customer's pool profiles, across
 	 * all owners — post_type registered by the theme
 	 * (theme/inc/pool-profile.php), just queried here.
@@ -209,8 +236,9 @@ class ShopChop_General_Settings {
 					</thead>
 					<tbody>
 						<?php foreach ( $profiles as $profile ) :
-							$photo_id = get_post_meta( $profile->ID, '_pool_photo_id', true );
-							$volume   = get_post_meta( $profile->ID, '_pool_volume', true );
+							$photo_id     = get_post_meta( $profile->ID, '_pool_photo_id', true );
+							$volume       = get_post_meta( $profile->ID, '_pool_volume', true );
+							$volume_label = $volume ? number_format_i18n( (int) $volume ) . ' L' . $this->format_pool_dimensions( $profile->ID ) : '';
 							$type     = $this->label_from_constant( 'SHOPCHOP_POOL_TYPES', get_post_meta( $profile->ID, '_pool_type', true ) );
 							$author   = get_userdata( (int) $profile->post_author );
 							$phone    = $author ? get_user_meta( $author->ID, 'billing_phone', true ) : '';
@@ -231,7 +259,7 @@ class ShopChop_General_Settings {
 								'owner'     => $author ? $author->display_name : '',
 								'email'     => $author ? $author->user_email : '',
 								'phone'     => $phone,
-								'volume'    => $volume ? number_format_i18n( (int) $volume ) . ' L' : '',
+								'volume'    => $volume_label,
 								'type'      => $type,
 								'shape'     => $this->label_from_constant( 'SHOPCHOP_POOL_SHAPES', get_post_meta( $profile->ID, '_pool_shape', true ) ),
 								'sanitiser' => $this->label_from_constant( 'SHOPCHOP_SANITISER_METHODS', get_post_meta( $profile->ID, '_sanitiser_method', true ) ),
@@ -268,7 +296,7 @@ class ShopChop_General_Settings {
 										&mdash;
 									<?php endif; ?>
 								</td>
-								<td><?php echo $volume ? esc_html( number_format_i18n( (int) $volume ) . ' L' ) : '—'; ?></td>
+								<td><?php echo $volume_label ? esc_html( $volume_label ) : '—'; ?></td>
 								<td><?php echo esc_html( $type ?: '—' ); ?></td>
 								<td><?php echo esc_html( get_the_date( '', $profile ) ); ?></td>
 								<td>
