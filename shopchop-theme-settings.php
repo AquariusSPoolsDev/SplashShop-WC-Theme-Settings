@@ -3,7 +3,7 @@
  * Plugin Name:       The Splash Shop Settings
  * Plugin URI:        https://github.com/AquariusSPoolsDev/SplashShop-WC-Theme-Settings
  * Description:       Custom Elementor widgets and other settings for The Splash Shop.
- * Version:           1.2.1
+ * Version:           1.3.0
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            Usoppii
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SHOPCHOP_SETTINGS_VERSION', '1.2.1' );
+define( 'SHOPCHOP_SETTINGS_VERSION', '1.3.0' );
 define( 'SHOPCHOP_SETTINGS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SHOPCHOP_SETTINGS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -47,7 +47,12 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/promo-banner.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/testimonials-carousel.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/blog-posts-grid.php';
-	
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/contact-quick-menu.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/contact-options.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/heading.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/paragraph.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/divider.php';
+
 	$widgets_manager->register( new ShopChop_Hero_Carousel() );
 	$widgets_manager->register( new ShopChop_Brand_Logos() );
 	$widgets_manager->register( new ShopChop_Category_Grid() );
@@ -57,4 +62,9 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	$widgets_manager->register( new ShopChop_Promo_Banner() );
 	$widgets_manager->register( new ShopChop_Testimonials_Carousel() );
 	$widgets_manager->register( new ShopChop_Blog_Posts_Grid() );
+	$widgets_manager->register( new ShopChop_Contact_Quick_Menu() );
+	$widgets_manager->register( new ShopChop_Contact_Options() );
+	$widgets_manager->register( new ShopChop_Heading() );
+	$widgets_manager->register( new ShopChop_Paragraph() );
+	$widgets_manager->register( new ShopChop_Divider() );
 } );
