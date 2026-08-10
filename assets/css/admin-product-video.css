@@ -1,0 +1,10 @@
+.shopchop-video-media-picker {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.shopchop-video-media-filename {
+	color: #666;
+	font-style: italic;
+}
