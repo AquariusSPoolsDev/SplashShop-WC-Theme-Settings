@@ -1,0 +1,92 @@
+/* Status pills (Task 2) */
+.shopchop-pill {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.6;
+}
+
+.shopchop-pill--publish {
+	background: #d1fae5;
+	color: #065f46;
+}
+
+.shopchop-pill--pending {
+	background: #fef3c7;
+	color: #92400e;
+}
+
+.shopchop-pill--draft {
+	background: transparent;
+	color: #6b7280;
+	border: 1px solid #9ca3af;
+}
+
+/* Variant expand/collapse (Task 4) */
+.shopchop-variant-toggle {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-top: 4px;
+	color: #2271b1;
+	font-size: 0.8rem;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.shopchop-variant-toggle:hover {
+	color: #135e96;
+}
+
+tr.shopchop-variant-row {
+	background: #f6f7f7;
+}
+
+/*
+ * Fade only — a CSS transform on a <tr> (display: table-row) renders
+ * unreliably across browsers and can paint outside the table's real column
+ * bounds, showing up as a stray box to the right of the table.
+ */
+tr.shopchop-variant-row td {
+	padding: 8px 10px;
+	vertical-align: middle;
+	transition: opacity 0.18s ease;
+}
+
+tr.shopchop-variant-row.shopchop-variant-row--enter td,
+tr.shopchop-variant-row.shopchop-variant-row--leave td {
+	opacity: 0;
+}
+
+.shopchop-variant-row__thumb {
+	display: block;
+	width: 40px;
+	height: 40px;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+.shopchop-variant-row__name {
+	font-weight: 600;
+	padding-left: 12px;
+}
+
+.shopchop-variant-row__sku {
+	color: #6b7280;
+}
+
+.shopchop-variant-row__stock-line {
+	font-size: 0.8rem;
+	color: #4b5563;
+}
+
+.shopchop-variant-row--loading td,
+.shopchop-variant-row--error td {
+	color: #6b7280;
+	font-style: italic;
+	text-align: center;
+	padding: 12px;
+}
