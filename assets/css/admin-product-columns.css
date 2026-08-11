@@ -24,6 +24,11 @@
 	border: 1px solid #9ca3af;
 }
 
+.shopchop-pill--private {
+	background: #e0e7ff;
+	color: #3730a3;
+}
+
 /* Variant expand/collapse (Task 4) */
 .shopchop-variant-toggle {
 	background: none;

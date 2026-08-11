@@ -58,6 +58,7 @@ function shopchop_render_status_pill( $post_id ) {
 		'publish' => array( 'label' => __( 'Published', 'shopchop' ), 'class' => 'shopchop-pill--publish' ),
 		'pending' => array( 'label' => __( 'Pending review', 'shopchop' ), 'class' => 'shopchop-pill--pending' ),
 		'draft'   => array( 'label' => __( 'Draft', 'shopchop' ), 'class' => 'shopchop-pill--draft' ),
+		'private' => array( 'label' => __( 'Private', 'shopchop' ), 'class' => 'shopchop-pill--private' ),
 	);
 
 	if ( ! isset( $map[ $status ] ) ) {
