@@ -65,6 +65,17 @@ tr.shopchop-variant-row.shopchop-variant-row--leave td {
 	opacity: 0;
 }
 
+/*
+ * Variant rows are plain sibling <tr>s inserted after the parent product
+ * row, not wrapped in their own container — :has() picks out the last one
+ * in each expanded group (i.e. not immediately followed by another variant
+ * row) so only that row gets a closing border, separating it from the next
+ * product row below.
+ */
+tr.shopchop-variant-row:not(:has(+ tr.shopchop-variant-row)) td {
+	border-bottom: 1px solid #dcdcde;
+}
+
 .shopchop-variant-row__thumb {
 	display: block;
 	width: 40px;
