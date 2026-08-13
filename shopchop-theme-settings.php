@@ -3,7 +3,7 @@
  * Plugin Name:       The Splash Shop Settings
  * Plugin URI:        https://github.com/AquariusSPoolsDev/SplashShop-WC-Theme-Settings
  * Description:       Custom Elementor widgets and other settings for The Splash Shop.
- * Version:           1.5.0
+ * Version:           1.6.0
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            Usoppii
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SHOPCHOP_SETTINGS_VERSION', '1.5.0' );
+define( 'SHOPCHOP_SETTINGS_VERSION', '1.6.0' );
 define( 'SHOPCHOP_SETTINGS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SHOPCHOP_SETTINGS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -42,6 +42,7 @@ add_action( 'elementor/elements/categories_registered', function ( $elements_man
  */
 add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/hero-carousel.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/hero-carousel-simple.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/brand-logos.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/category-grid.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/usp-bar.php';
@@ -55,8 +56,11 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/heading.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/paragraph.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/divider.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/membership-benefit.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/contact-section.php';
 
 	$widgets_manager->register( new ShopChop_Hero_Carousel() );
+	$widgets_manager->register( new ShopChop_Hero_Carousel_Simple() );
 	$widgets_manager->register( new ShopChop_Brand_Logos() );
 	$widgets_manager->register( new ShopChop_Category_Grid() );
 	$widgets_manager->register( new ShopChop_USP_Bar() );
@@ -70,4 +74,6 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	$widgets_manager->register( new ShopChop_Heading() );
 	$widgets_manager->register( new ShopChop_Paragraph() );
 	$widgets_manager->register( new ShopChop_Divider() );
+	$widgets_manager->register( new ShopChop_Membership_Benefit() );
+	$widgets_manager->register( new ShopChop_Contact_Section() );
 } );

@@ -106,6 +106,7 @@ class ShopChop_Brand_Logos extends \Elementor\Widget_Base
 				<div class="brand-logo-content">
 					<?php if ($heading) : ?>
 						<h2 class="brand-distributor-heading"><?php echo esc_html($heading); ?></h2>
+						<span class="brand-logo-divider" aria-hidden="true"></span>
 					<?php endif; ?>
 
 					<div class="brand-logo-grid">

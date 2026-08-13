@@ -342,6 +342,12 @@ class ShopChop_Products_Carousel extends \Elementor\Widget_Base
 		$query = $this->build_query($settings);
 		if (! $query->have_posts()) return;
 
+		// Swiper loop mode needs roughly 2x the largest breakpoint's slidesPerView (4)
+		// worth of real slides, or it misbehaves. Force it off when there aren't enough.
+		if ($query->post_count < 4) {
+			$loop = false;
+		}
+
 		$swiper_config = wp_json_encode([
 			'slidesPerView'  => 2,
 			'spaceBetween'   => 16,
@@ -408,16 +414,22 @@ class ShopChop_Products_Carousel extends \Elementor\Widget_Base
 
 					</div><!-- .swiper-wrapper -->
 
-					<?php if ($pagination) : ?>
-						<div class="swiper-pagination"></div>
-					<?php endif; ?>
-
-					<?php if ($arrows) : ?>
-						<div class="swiper-button-prev" role="button" title="<?php esc_attr_e('Previous products', 'shopchop-theme-settings'); ?>" aria-label="<?php esc_attr_e('Previous products', 'shopchop-theme-settings'); ?>"></div>
-						<div class="swiper-button-next" role="button" title="<?php esc_attr_e('Next products', 'shopchop-theme-settings'); ?>" aria-label="<?php esc_attr_e('Next products', 'shopchop-theme-settings'); ?>"></div>
-					<?php endif; ?>
-
 				</div><!-- .swiper -->
+
+				<?php if ($pagination || $arrows) : ?>
+					<div class="products-carousel-footer">
+						<?php if ($pagination) : ?>
+							<div class="swiper-pagination"></div>
+						<?php endif; ?>
+
+						<?php if ($arrows) : ?>
+							<div class="products-carousel-nav">
+								<div class="swiper-button-prev" role="button" title="<?php esc_attr_e('Previous products', 'shopchop-theme-settings'); ?>" aria-label="<?php esc_attr_e('Previous products', 'shopchop-theme-settings'); ?>"></div>
+								<div class="swiper-button-next" role="button" title="<?php esc_attr_e('Next products', 'shopchop-theme-settings'); ?>" aria-label="<?php esc_attr_e('Next products', 'shopchop-theme-settings'); ?>"></div>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
 
 			</div>
 		</div>
