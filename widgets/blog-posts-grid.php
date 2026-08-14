@@ -52,6 +52,16 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 			'default' => esc_html__('From Our Blog', 'shopchop-theme-settings'),
 		]);
 
+		$this->add_control('heading_transform', [
+			'label'   => esc_html__('Text Transform', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::SELECT,
+			'default' => 'normal',
+			'options' => [
+				'normal'    => esc_html__('Normal', 'shopchop-theme-settings'),
+				'uppercase' => esc_html__('Uppercase', 'shopchop-theme-settings'),
+			],
+		]);
+
 		$this->add_control('description', [
 			'label'   => esc_html__('Description', 'shopchop-theme-settings'),
 			'type'    => \Elementor\Controls_Manager::TEXTAREA,
@@ -173,6 +183,7 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 	{
 		$settings       = $this->get_settings_for_display();
 		$heading        = $settings['heading_text']  ?? '';
+		$transform      = $settings['heading_transform'] ?? 'normal';
 		$desc           = $settings['description']   ?? '';
 		$count          = (int) ($settings['posts_count'] ?? 3);
 		$columns        = $settings['columns']        ?? '3';
@@ -209,7 +220,8 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 		$query = new \WP_Query($args);
 		if (! $query->have_posts()) return;
 
-		$col_class = $columns === '2' ? 'blog-grid-cols-2' : 'blog-grid-cols-3';
+		$col_class     = $columns === '2' ? 'blog-grid-cols-2' : 'blog-grid-cols-3';
+		$heading_class = 'blog-grid-heading' . ($transform === 'uppercase' ? ' shopchop-heading-uppercase' : '');
 ?>
 
 		<div class="shopchop-blog-posts-grid">
@@ -218,7 +230,7 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 				<?php if ($heading || $desc) : ?>
 					<div class="blog-grid-header">
 						<?php if ($heading) : ?>
-							<h2 class="blog-grid-heading"><?php echo esc_html($heading); ?></h2>
+							<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
 						<?php endif; ?>
 						<?php if ($desc) : ?>
 							<p class="blog-grid-description"><?php echo esc_html($desc); ?></p>

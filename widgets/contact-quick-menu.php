@@ -55,6 +55,16 @@ class ShopChop_Contact_Quick_Menu extends \Elementor\Widget_Base
 			'placeholder' => esc_html__('e.g. What Do You Need?', 'shopchop-theme-settings'),
 		]);
 
+		$this->add_control('heading_transform', [
+			'label'   => esc_html__('Text Transform', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::SELECT,
+			'default' => 'normal',
+			'options' => [
+				'normal'    => esc_html__('Normal', 'shopchop-theme-settings'),
+				'uppercase' => esc_html__('Uppercase', 'shopchop-theme-settings'),
+			],
+		]);
+
 		$this->end_controls_section();
 
 		// ── Menu Items ───────────────────────────────────────────
@@ -113,20 +123,23 @@ class ShopChop_Contact_Quick_Menu extends \Elementor\Widget_Base
 	protected function render(): void
 	{
 		$settings = $this->get_settings_for_display();
-		$heading  = $settings['heading_text'] ?? '';
-		$items    = $settings['menu_items']    ?? [];
+		$heading   = $settings['heading_text']      ?? '';
+		$transform = $settings['heading_transform'] ?? 'normal';
+		$items     = $settings['menu_items']        ?? [];
 
 		if (empty($items)) return;
 
 		// Hard cap at 4 regardless of saved data (e.g. imported templates).
 		$items = array_slice($items, 0, 4);
 		$count = count($items);
+
+		$heading_class = 'quick-menu-heading' . ($transform === 'uppercase' ? ' shopchop-heading-uppercase' : '');
 ?>
 
 		<div class="shopchop-contact-quick-menu">
 			<div class="">
 				<?php if ($heading) : ?>
-					<h2 class="quick-menu-heading"><?php echo esc_html($heading); ?></h2>
+					<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
 				<?php endif; ?>
 
 				<div class="quick-menu-grid quick-menu-cols-<?php echo esc_attr($count); ?>">

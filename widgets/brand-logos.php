@@ -54,6 +54,16 @@ class ShopChop_Brand_Logos extends \Elementor\Widget_Base
 			'default' => esc_html__('Authorised Distributor for', 'shopchop-theme-settings'),
 		]);
 
+		$this->add_control('heading_transform', [
+			'label'   => esc_html__('Text Transform', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::SELECT,
+			'default' => 'normal',
+			'options' => [
+				'normal'    => esc_html__('Normal', 'shopchop-theme-settings'),
+				'uppercase' => esc_html__('Uppercase', 'shopchop-theme-settings'),
+			],
+		]);
+
 		$this->end_controls_section();
 
 		// ── Brands ──────────────────────────────────────────────
@@ -95,17 +105,20 @@ class ShopChop_Brand_Logos extends \Elementor\Widget_Base
 	protected function render(): void
 	{
 		$settings = $this->get_settings_for_display();
-		$brands   = $settings['brands'] ?? [];
-		$heading  = $settings['heading_text'] ?? '';
+		$brands    = $settings['brands'] ?? [];
+		$heading   = $settings['heading_text']      ?? '';
+		$transform = $settings['heading_transform'] ?? 'normal';
 
 		if (empty($brands)) return;
+
+		$heading_class = 'brand-distributor-heading' . ($transform === 'uppercase' ? ' shopchop-heading-uppercase' : '');
 ?>
 
 		<div class="shopchop-brand-logos">
 			<div class="homepage-container">
 				<div class="brand-logo-content">
 					<?php if ($heading) : ?>
-						<h2 class="brand-distributor-heading"><?php echo esc_html($heading); ?></h2>
+						<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
 						<span class="brand-logo-divider" aria-hidden="true"></span>
 					<?php endif; ?>
 

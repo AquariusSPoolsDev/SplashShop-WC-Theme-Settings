@@ -55,6 +55,16 @@ class ShopChop_Contact_Options extends \Elementor\Widget_Base
 			'placeholder' => esc_html__('e.g. Contact Us Directly', 'shopchop-theme-settings'),
 		]);
 
+		$this->add_control('heading_transform', [
+			'label'   => esc_html__('Text Transform', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::SELECT,
+			'default' => 'normal',
+			'options' => [
+				'normal'    => esc_html__('Normal', 'shopchop-theme-settings'),
+				'uppercase' => esc_html__('Uppercase', 'shopchop-theme-settings'),
+			],
+		]);
+
 		$this->end_controls_section();
 
 		// ── Options ──────────────────────────────────────────────
@@ -160,8 +170,10 @@ class ShopChop_Contact_Options extends \Elementor\Widget_Base
 	protected function render(): void
 	{
 		$settings = $this->get_settings_for_display();
-		$heading  = $settings['heading_text']    ?? '';
-		$options  = $settings['contact_options'] ?? [];
+		$heading   = $settings['heading_text']      ?? '';
+		$transform = $settings['heading_transform'] ?? 'normal';
+		$options   = $settings['contact_options']   ?? [];
+		$heading_class = 'contact-options-heading' . ($transform === 'uppercase' ? ' shopchop-heading-uppercase' : '');
 
 		if (empty($options)) return;
 
@@ -173,7 +185,7 @@ class ShopChop_Contact_Options extends \Elementor\Widget_Base
 		<div class="shopchop-contact-options">
 			<div class="">
 				<?php if ($heading) : ?>
-					<h2 class="contact-options-heading"><?php echo esc_html($heading); ?></h2>
+					<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
 				<?php endif; ?>
 
 				<div class="contact-options-grid contact-options-cols-<?php echo esc_attr($count); ?>">
