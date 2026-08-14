@@ -58,6 +58,7 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/divider.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/membership-benefit.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/contact-section.php';
+	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/faq-accordion.php';
 
 	$widgets_manager->register( new ShopChop_Hero_Carousel() );
 	$widgets_manager->register( new ShopChop_Hero_Carousel_Simple() );
@@ -76,4 +77,5 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	$widgets_manager->register( new ShopChop_Divider() );
 	$widgets_manager->register( new ShopChop_Membership_Benefit() );
 	$widgets_manager->register( new ShopChop_Contact_Section() );
+	$widgets_manager->register( new ShopChop_FAQ_Accordion() );
 } );
