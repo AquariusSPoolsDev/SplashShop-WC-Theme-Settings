@@ -72,7 +72,7 @@ class ShopChop_Heading extends \Elementor\Widget_Base
 			'type'        => \Elementor\Controls_Manager::SELECT,
 			'default'     => 'section',
 			'options'     => [
-				'section' => esc_html__('Section Heading (gradient, uppercase)', 'shopchop-theme-settings'),
+				'section' => esc_html__('Section Heading (gradient)', 'shopchop-theme-settings'),
 				'simple'  => esc_html__('Simple (solid color)', 'shopchop-theme-settings'),
 			],
 			'description' => esc_html__('Matches the heading treatments already used across ShopChop sections.', 'shopchop-theme-settings'),
