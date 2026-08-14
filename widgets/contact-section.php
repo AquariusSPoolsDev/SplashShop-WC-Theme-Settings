@@ -155,7 +155,45 @@ class ShopChop_Contact_Section extends \Elementor\Widget_Base
 		$this->add_control('background_image', [
 			'label'       => esc_html__('Background Image', 'shopchop-theme-settings'),
 			'type'        => \Elementor\Controls_Manager::MEDIA,
-			'description' => esc_html__('Optional. Blur, opacity, and overflow are handled automatically.', 'shopchop-theme-settings'),
+			'description' => esc_html__('Optional. Overflow is handled automatically.', 'shopchop-theme-settings'),
+		]);
+
+		$this->add_control('background_blur', [
+			'label'      => esc_html__('Background Blur', 'shopchop-theme-settings'),
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => ['px'],
+			'range'      => [
+				'px' => [
+					'min' => 0,
+					'max' => 40,
+				],
+			],
+			'default'    => [
+				'unit' => 'px',
+				'size' => 4,
+			],
+			'condition'  => [
+				'background_image[url]!' => '',
+			],
+		]);
+
+		$this->add_control('background_opacity', [
+			'label'     => esc_html__('Background Opacity', 'shopchop-theme-settings'),
+			'type'      => \Elementor\Controls_Manager::SLIDER,
+			'range'     => [
+				'px' => [
+					'min'  => 0,
+					'max'  => 100,
+					'step' => 1,
+				],
+			],
+			'default'   => [
+				'unit' => 'px',
+				'size' => 25,
+			],
+			'condition' => [
+				'background_image[url]!' => '',
+			],
 		]);
 
 		$this->end_controls_section();
@@ -173,12 +211,15 @@ class ShopChop_Contact_Section extends \Elementor\Widget_Base
 		$primary_url   = $primary_link['url']                    ?? '';
 		$contacts      = $settings['secondary_contacts']         ?? [];
 		$bg_url        = $settings['background_image']['url']    ?? '';
+		$bg_blur       = $settings['background_blur']['size']    ?? 4;
+		$bg_opacity    = $settings['background_opacity']['size']  ?? 25;
+		$bg_style      = sprintf('filter:blur(%dpx);opacity:%s%%;', (int) $bg_blur, esc_attr($bg_opacity));
 ?>
 
 		<div class="shopchop-contact-section">
 			<?php if ($bg_url) : ?>
 				<div class="contact-section-bg" aria-hidden="true">
-					<img src="<?php echo esc_url($bg_url); ?>" alt="" class="contact-section-bg-img" loading="lazy">
+					<img src="<?php echo esc_url($bg_url); ?>" alt="" class="contact-section-bg-img" loading="lazy" style="<?php echo esc_attr($bg_style); ?>">
 				</div>
 			<?php endif; ?>
 

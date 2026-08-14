@@ -127,7 +127,26 @@ class ShopChop_Hero_Carousel_Simple extends \Elementor\Widget_Base
 			'label'       => esc_html__('Background Image', 'shopchop-theme-settings'),
 			'type'        => \Elementor\Controls_Manager::MEDIA,
 			'default'     => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-			'description' => esc_html__('Blur, overlay, and overflow are handled automatically.', 'shopchop-theme-settings'),
+			'description' => esc_html__('Overlay and overflow are handled automatically.', 'shopchop-theme-settings'),
+		]);
+
+		$this->add_control('background_blur', [
+			'label'      => esc_html__('Background Blur', 'shopchop-theme-settings'),
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => ['px'],
+			'range'      => [
+				'px' => [
+					'min' => 0,
+					'max' => 40,
+				],
+			],
+			'default'    => [
+				'unit' => 'px',
+				'size' => 4,
+			],
+			'condition'  => [
+				'background_image[url]!' => '',
+			],
 		]);
 
 		$this->end_controls_section();
@@ -141,12 +160,14 @@ class ShopChop_Hero_Carousel_Simple extends \Elementor\Widget_Base
 		$subheading = $settings['subheading_text'] ?? '';
 		$buttons    = $settings['buttons']         ?? [];
 		$bg_url     = $settings['background_image']['url'] ?? '';
+		$bg_blur    = $settings['background_blur']['size'] ?? 4;
+		$bg_style   = sprintf('filter:blur(%dpx);', (int) $bg_blur);
 ?>
 
 		<div class="shopchop-hero-simple">
 			<?php if ($bg_url) : ?>
 				<div class="hero-simple-bg" aria-hidden="true">
-					<img src="<?php echo esc_url($bg_url); ?>" alt="" class="hero-simple-bg-img" loading="eager">
+					<img src="<?php echo esc_url($bg_url); ?>" alt="" class="hero-simple-bg-img" loading="eager" style="<?php echo esc_attr($bg_style); ?>">
 				</div>
 			<?php endif; ?>
 
