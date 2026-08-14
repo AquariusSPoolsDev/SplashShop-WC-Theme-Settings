@@ -89,16 +89,27 @@ class ShopChop_Heading extends \Elementor\Widget_Base
 			],
 		]);
 
+		$this->add_control('heading_transform', [
+			'label'   => esc_html__('Text Transform', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::SELECT,
+			'default' => 'normal',
+			'options' => [
+				'normal'    => esc_html__('Normal', 'shopchop-theme-settings'),
+				'uppercase' => esc_html__('Uppercase', 'shopchop-theme-settings'),
+			],
+		]);
+
 		$this->end_controls_section();
 	}
 
 	protected function render(): void
 	{
-		$settings = $this->get_settings_for_display();
-		$text     = $settings['heading_text']  ?? '';
-		$tag      = $settings['heading_tag']   ?? 'h2';
-		$style    = $settings['heading_style'] ?? 'section';
-		$align    = $settings['heading_align'] ?? 'start';
+		$settings  = $this->get_settings_for_display();
+		$text      = $settings['heading_text']      ?? '';
+		$tag       = $settings['heading_tag']       ?? 'h2';
+		$style     = $settings['heading_style']     ?? 'section';
+		$align     = $settings['heading_align']     ?? 'start';
+		$transform = $settings['heading_transform'] ?? 'normal';
 
 		if (empty($text)) return;
 
@@ -112,6 +123,10 @@ class ShopChop_Heading extends \Elementor\Widget_Base
 			'shopchop-heading-' . $style,
 			'text-' . $align,
 		];
+
+		if ($transform === 'uppercase') {
+			$classes[] = 'shopchop-heading-uppercase';
+		}
 ?>
 		<<?php echo esc_html($tag); ?> class="<?php echo esc_attr(implode(' ', $classes)); ?>">
 			<?php echo esc_html($text); ?>
