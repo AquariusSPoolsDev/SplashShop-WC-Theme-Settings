@@ -15,17 +15,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Task 1 + Task 2: hide Tags/Brands/Date, register Status column between
- * Categories and Featured.
+ * Task 1 + Task 2 (revised): hide Brands/Date, bring Tags back and reorder
+ * to Categories → Tags → Status → Featured.
+ *
+ * Real WooCommerce/WP-core column keys — NOT 'tags' / 'product_brand' as
+ * originally assumed, which silently no-op'd since those keys never existed
+ * in $columns to begin with:
+ * - Tags column key is 'product_tag' (WC_Admin_List_Table_Products::columns()).
+ * - Brand is a taxonomy registered with 'show_admin_column' => true, so WP
+ *   core auto-adds it under the generic 'taxonomy-{taxonomy}' key, i.e.
+ *   'taxonomy-product_brand'.
  */
 add_filter( 'manage_edit-product_columns', 'shopchop_admin_manage_product_columns' );
 function shopchop_admin_manage_product_columns( $columns ) {
-	unset( $columns['tags'], $columns['product_brand'], $columns['date'] );
+	unset( $columns['taxonomy-product_brand'], $columns['date'] );
+
+	$tags_label = isset( $columns['product_tag'] ) ? $columns['product_tag'] : null;
+	unset( $columns['product_tag'] );
 
 	$new_columns = array();
 	foreach ( $columns as $key => $label ) {
 		$new_columns[ $key ] = $label;
 		if ( 'product_cat' === $key ) {
+			if ( null !== $tags_label ) {
+				$new_columns['product_tag'] = $tags_label;
+			}
 			$new_columns['shopchop_status'] = __( 'Status', 'shopchop' );
 		}
 	}
@@ -196,6 +210,17 @@ function shopchop_admin_custom_status_styles() {
 
 		.wp-list-table .column-is_in_stock,
 		.wp-list-table .column-price { width:20ch!important; }
+
+		/*
+		 * table.fixed (WP core) forces table-layout:fixed, which allocates
+		 * column widths once from the header row and never grows a column
+		 * to fit its content. Adding the Tags/Status columns squeezed every
+		 * column thinner, and "Status" (short header text) got allocated so
+		 * little room its header wrapped letter-by-letter and the pill
+		 * overflowed visually into the Tags column next to it.
+		 */
+		.wp-list-table .column-shopchop_status { width:10ch!important; overflow:hidden; }
+		.wp-list-table .column-product_tag { width:14ch!important; }
 
 		.wp-list-table .column-price { color:#005A7A; font-weight:700; }
 
