@@ -172,6 +172,7 @@ class ShopChop_Product_Spotlight extends \Elementor\Widget_Base
 								src="<?php echo esc_url($img_url); ?>"
 								alt="<?php echo esc_attr($img_alt); ?>"
 								title="<?php echo esc_attr($img_alt); ?>"
+								loading="lazy"
 								class="spotlight-image"
 							/>
 						</div>

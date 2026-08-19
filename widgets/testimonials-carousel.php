@@ -319,7 +319,7 @@ class ShopChop_Testimonials_Carousel extends \Elementor\Widget_Base
 
 									<div class="testimonial-author">
 										<?php if ($avatar_url) : ?>
-											<img src="<?php echo esc_url($avatar_url); ?>" alt="<?php echo esc_attr($review['reviewer_name']); ?>" class="testimonial-avatar" />
+											<img src="<?php echo esc_url($avatar_url); ?>" alt="<?php echo esc_attr($review['reviewer_name']); ?>" loading="lazy" class="testimonial-avatar" />
 										<?php else : ?>
 											<div class="testimonial-avatar-placeholder">
 												<?php echo esc_html(mb_substr($review['reviewer_name'], 0, 1)); ?>
