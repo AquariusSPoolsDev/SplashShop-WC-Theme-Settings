@@ -153,9 +153,8 @@ class ShopChop_Contact_Section extends \Elementor\Widget_Base
 		]);
 
 		$this->add_control('background_image', [
-			'label'       => esc_html__('Background Image', 'shopchop-theme-settings'),
-			'type'        => \Elementor\Controls_Manager::MEDIA,
-			'description' => esc_html__('Optional. Overflow is handled automatically.', 'shopchop-theme-settings'),
+			'label' => esc_html__('Background Image', 'shopchop-theme-settings'),
+			'type'  => \Elementor\Controls_Manager::MEDIA,
 		]);
 
 		$this->add_control('background_blur', [

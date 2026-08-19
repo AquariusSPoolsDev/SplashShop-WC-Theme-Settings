@@ -183,7 +183,7 @@ class ShopChop_Contact_Options extends \Elementor\Widget_Base
 ?>
 
 		<div class="shopchop-contact-options">
-			<div class="">
+			<div>
 				<?php if ($heading) : ?>
 					<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
 				<?php endif; ?>

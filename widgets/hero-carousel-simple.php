@@ -124,10 +124,9 @@ class ShopChop_Hero_Carousel_Simple extends \Elementor\Widget_Base
 		]);
 
 		$this->add_control('background_image', [
-			'label'       => esc_html__('Background Image', 'shopchop-theme-settings'),
-			'type'        => \Elementor\Controls_Manager::MEDIA,
-			'default'     => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-			'description' => esc_html__('Overlay and overflow are handled automatically.', 'shopchop-theme-settings'),
+			'label'   => esc_html__('Background Image', 'shopchop-theme-settings'),
+			'type'    => \Elementor\Controls_Manager::MEDIA,
+			'default' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
 		]);
 
 		$this->add_control('background_blur', [
