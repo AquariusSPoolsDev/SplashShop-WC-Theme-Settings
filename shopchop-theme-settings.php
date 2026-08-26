@@ -3,7 +3,7 @@
  * Plugin Name:       The Splash Shop Settings
  * Plugin URI:        https://github.com/AquariusSPoolsDev/SplashShop-WC-Theme-Settings
  * Description:       Custom Elementor widgets and other settings for The Splash Shop.
- * Version:           1.6.1
+ * Version:           1.6.2
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            Usoppii
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SHOPCHOP_SETTINGS_VERSION', '1.6.0' );
+define( 'SHOPCHOP_SETTINGS_VERSION', '1.6.2' );
 define( 'SHOPCHOP_SETTINGS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SHOPCHOP_SETTINGS_URL', plugin_dir_url( __FILE__ ) );
 

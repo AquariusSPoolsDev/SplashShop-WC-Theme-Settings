@@ -1,3 +1,7 @@
+.shopchop_video_options a::before {
+	content: "\f126" !important; /* Dashicons: video-alt3 */
+}
+
 .shopchop-video-media-picker {
 	display: inline-flex;
 	align-items: center;
