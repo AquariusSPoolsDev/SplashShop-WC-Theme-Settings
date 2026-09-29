@@ -1,0 +1,43 @@
+/* Role pills (Users list) */
+.shopchop-role-pill {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.6;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.shopchop-role-pill--administrator {
+	background: #ffe4e6;
+	color: #9f1239;
+}
+
+.shopchop-role-pill--shop_manager {
+	background: #dbeafe;
+	color: #1d4ed8;
+}
+
+.shopchop-role-pill--customer {
+	background: #d1fae5;
+	color: #065f46;
+}
+
+.shopchop-role-pill--editor {
+	background: #e0e7ff;
+	color: #3730a3;
+}
+
+.shopchop-role-pill--author,
+.shopchop-role-pill--contributor {
+	background: #fef3c7;
+	color: #92400e;
+}
+
+.shopchop-role-pill--subscriber,
+.shopchop-role-pill--default {
+	background: #f3f4f6;
+	color: #4b5563;
+}
