@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SHOPCHOP_SETTINGS_VERSION', '1.6.2' );
+define( 'SHOPCHOP_SETTINGS_VERSION', '1.7.0' );
 define( 'SHOPCHOP_SETTINGS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SHOPCHOP_SETTINGS_URL', plugin_dir_url( __FILE__ ) );
 
