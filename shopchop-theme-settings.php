@@ -3,7 +3,7 @@
  * Plugin Name:       The Splash Shop Settings
  * Plugin URI:        https://github.com/AquariusSPoolsDev/SplashShop-WC-Theme-Settings
  * Description:       Custom Elementor widgets and other settings for The Splash Shop.
- * Version:           1.7.0
+ * Version:           1.8.0
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            Usoppii
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SHOPCHOP_SETTINGS_VERSION', '1.7.0' );
+define( 'SHOPCHOP_SETTINGS_VERSION', '1.8.0' );
 define( 'SHOPCHOP_SETTINGS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SHOPCHOP_SETTINGS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -33,7 +33,7 @@ require_once SHOPCHOP_SETTINGS_DIR . 'includes/product-video/frontend.php';
  */
 add_action( 'elementor/elements/categories_registered', function ( $elements_manager ) {
 	$elements_manager->add_category( 'shopchop', [
-		'title' => esc_html__( 'ShopChop', 'shopchop-theme-settings' ),
+		'title' => esc_html__( 'The Splash Shop', 'shopchop-theme-settings' ),
 		'icon'  => 'fa fa-plug',
 	] );
 } );
@@ -42,6 +42,7 @@ add_action( 'elementor/elements/categories_registered', function ( $elements_man
  * Register all ShopChop Elementor widgets.
  */
 add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
+	require_once SHOPCHOP_SETTINGS_DIR . 'includes/trait-section-style.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/hero-carousel.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/hero-carousel-simple.php';
 	require_once SHOPCHOP_SETTINGS_DIR . 'widgets/brand-logos.php';

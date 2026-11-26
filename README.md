@@ -15,7 +15,7 @@ A companion WordPress plugin for **The Splash Shop** — a WooCommerce store for
 
 ## What's Inside
 
-All widgets appear under the **ShopChop** category in the Elementor panel.
+All widgets appear in **The Splash Shop** group in the Elementor panel.
 
 | Widget | Description |
 |---|---|
@@ -35,7 +35,7 @@ All widgets appear under the **ShopChop** category in the Elementor panel.
 
 1. Upload the `shopchop-theme-settings` folder to `/wp-content/plugins/`
 2. Activate via **Plugins → Installed Plugins**
-3. Widgets appear automatically in Elementor under the **ShopChop** category
+3. Widgets appear automatically in Elementor in **The Splash Shop** group
 
 ---
 

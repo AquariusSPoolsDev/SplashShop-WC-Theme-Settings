@@ -75,7 +75,7 @@ class ShopChop_Heading extends \Elementor\Widget_Base
 				'section' => esc_html__('Section Heading (gradient)', 'shopchop-theme-settings'),
 				'simple'  => esc_html__('Simple (solid color)', 'shopchop-theme-settings'),
 			],
-			'description' => esc_html__('Matches the heading treatments already used across ShopChop sections.', 'shopchop-theme-settings'),
+			'description' => esc_html__('Matches the heading treatments already used across The Splash Shop sections.', 'shopchop-theme-settings'),
 		]);
 
 		$this->add_control('heading_align', [

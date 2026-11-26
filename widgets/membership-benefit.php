@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_Membership_Benefit extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 	public function get_name(): string
 	{
 		return 'shopchop-membership-benefit';
@@ -134,6 +136,8 @@ class ShopChop_Membership_Benefit extends \Elementor\Widget_Base
 		]);
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(true);
 	}
 
 	protected function render(): void
@@ -152,7 +156,7 @@ class ShopChop_Membership_Benefit extends \Elementor\Widget_Base
 		$img_alt      = $settings['benefit_image']['alt'] ?? esc_html($heading);
 ?>
 
-		<div class="shopchop-membership-benefit">
+		<div class="shopchop-membership-benefit <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 				<div class="membership-benefit-inner">
 					<div class="membership-benefit-content">

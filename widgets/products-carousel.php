@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_Products_Carousel extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 
 	public function get_name(): string
 	{
@@ -209,6 +211,8 @@ class ShopChop_Products_Carousel extends \Elementor\Widget_Base
 		]);
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(false);
 	}
 
 	private function get_show_all_url(array $settings): string
@@ -362,7 +366,7 @@ class ShopChop_Products_Carousel extends \Elementor\Widget_Base
 		]);
 ?>
 
-		<div class="shopchop-products-carousel">
+		<div class="shopchop-products-carousel <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 
 				<div class="products-carousel-header">

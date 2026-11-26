@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_Testimonials_Carousel extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 	public function get_name(): string
 	{
 		return 'shopchop-testimonials-carousel';
@@ -194,6 +196,8 @@ class ShopChop_Testimonials_Carousel extends \Elementor\Widget_Base
 
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(true);
 	}
 
 	private function render_stars(int $rating): string
@@ -283,7 +287,7 @@ class ShopChop_Testimonials_Carousel extends \Elementor\Widget_Base
 		]);
 ?>
 
-		<div class="shopchop-testimonials-carousel">
+		<div class="shopchop-testimonials-carousel <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 
 				<?php if ($heading || $desc) : ?>

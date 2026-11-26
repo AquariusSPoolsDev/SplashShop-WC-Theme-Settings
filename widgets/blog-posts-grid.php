@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 	public function get_name(): string
 	{
 		return 'shopchop-blog-posts-grid';
@@ -177,6 +179,8 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 		]);
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(true);
 	}
 
 	protected function render(): void
@@ -224,16 +228,25 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 		$heading_class = 'blog-grid-heading' . ($transform === 'uppercase' ? ' shopchop-heading-uppercase' : '');
 ?>
 
-		<div class="shopchop-blog-posts-grid">
+		<div class="shopchop-blog-posts-grid <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 
-				<?php if ($heading || $desc) : ?>
+				<?php if ($heading || $desc || $view_all_url) : ?>
 					<div class="blog-grid-header">
-						<?php if ($heading) : ?>
-							<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
-						<?php endif; ?>
-						<?php if ($desc) : ?>
-							<p class="blog-grid-description"><?php echo esc_html($desc); ?></p>
+						<div class="blog-grid-header-text">
+							<?php if ($heading) : ?>
+								<h2 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($heading); ?></h2>
+							<?php endif; ?>
+							<?php if ($desc) : ?>
+								<p class="blog-grid-description"><?php echo esc_html($desc); ?></p>
+							<?php endif; ?>
+						</div>
+
+						<?php if ($view_all_url) : ?>
+							<a href="<?php echo esc_url($view_all_url); ?>" class="blog-grid-view-all">
+								<?php echo esc_html($view_all_label); ?>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+							</a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
@@ -294,18 +307,6 @@ class ShopChop_Blog_Posts_Grid extends \Elementor\Widget_Base
 					<?php endwhile;
 					wp_reset_postdata(); ?>
 				</div>
-
-				<?php if ($view_all_url) : ?>
-					<div class="blog-grid-footer">
-						<a href="<?php echo esc_url($view_all_url); ?>" class="blog-grid-view-all">
-							<?php echo esc_html($view_all_label); ?>
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" />
-							</svg>
-						</a>
-					</div>
-				<?php endif; ?>
 
 			</div>
 		</div>

@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_USP_Bar extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 
 	public function get_name(): string
 	{
@@ -101,6 +103,8 @@ class ShopChop_USP_Bar extends \Elementor\Widget_Base
 		]);
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(true);
 	}
 
 	protected function render(): void
@@ -112,7 +116,7 @@ class ShopChop_USP_Bar extends \Elementor\Widget_Base
 		if (empty($points)) return;
 ?>
 
-		<div class="shopchop-usp-bar">
+		<div class="shopchop-usp-bar <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 				<?php if ($heading) : ?>
 					<h2 class="usp-heading"><?php echo esc_html($heading); ?></h2>

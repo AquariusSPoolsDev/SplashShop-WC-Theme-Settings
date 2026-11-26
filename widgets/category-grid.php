@@ -3,6 +3,8 @@ if (! defined('ABSPATH')) exit;
 
 class ShopChop_Category_Grid extends \Elementor\Widget_Base
 {
+	use ShopChop_Section_Style;
+
 
 	public function get_name(): string
 	{
@@ -135,6 +137,8 @@ class ShopChop_Category_Grid extends \Elementor\Widget_Base
 		]);
 
 		$this->end_controls_section();
+
+		$this->register_section_style_controls(false);
 	}
 
 	protected function render(): void
@@ -151,7 +155,7 @@ class ShopChop_Category_Grid extends \Elementor\Widget_Base
 		if (empty($items)) return;
 ?>
 
-		<div class="shopchop-category-grid">
+		<div class="shopchop-category-grid <?php echo esc_attr($this->section_style_classes($settings)); ?>">
 			<div class="homepage-container">
 
 				<?php if ($heading || $subheading) : ?>
